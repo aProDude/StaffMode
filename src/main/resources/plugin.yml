@@ -1,11 +1,13 @@
 name: StaffMode
 main: nl._xxprodudexx_.staffmode.StaffMode
-version: 1.0.0-SNAPSHOT
+version: 1.0.1-SNAPSHOT
 author: _xXProDudeXx_
 description: StaffMode-Plugin
 
 commands:
       staffmode:
+              usage: /<command>
+              description: Enter or Leave the StaffMode
 
 permissions:
       staffmode.use:

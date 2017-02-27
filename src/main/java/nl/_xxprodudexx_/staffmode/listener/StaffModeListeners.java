@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
@@ -79,11 +80,18 @@ public class StaffModeListeners implements Listener {
 
     @EventHandler
     public void on(PlayerPickupItemEvent e) {
-        if (StaffMode.getInstance().hasStaffMode(e.getPlayer())) {
+        if (StaffMode.getAPI().hasStaffMode(e.getPlayer())) {
             e.setCancelled(true);
         }
     }
 
+    @EventHandler
+    public void on(PlayerJoinEvent e) {
+        if (StaffMode.getAPI().hasStaffMode(e.getPlayer())) {
+            vanish(e.getPlayer());
+            e.getPlayer().sendMessage("§7You are still in staffmode, to disable this, type /staffmode");
+        }
+    }
 
     public void setStaffMode(Player p) {
         StaffMode.getInstance().staffmodePlayers.add(p);
